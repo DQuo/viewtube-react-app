@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Grid } from '@material-ui/core';
 
 // API
@@ -10,7 +10,12 @@ import VideoDetail from './components/VideoDetail';
 import VideoList from './components/VideoList';
 
 
+
 export default function App() {
+
+  const [videos, setVideos] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null)
+
 
   const handleSubmit = async (searchTerm) => {
     try {
@@ -23,11 +28,14 @@ export default function App() {
         }
       });
       console.log(res);
+      setVideos(res.data.items);
+      setSelectedVideo(res.data.items[0])
     }
     catch (err) {
       console.log(err);
     }
   };
+
 
   return (
     <Grid container spacing={10}>
@@ -37,7 +45,7 @@ export default function App() {
             <SearchBar onFormSubmit={handleSubmit} />
           </Grid>
           <Grid item xs={8}>
-            <VideoDetail />
+            <VideoDetail video={selectedVideo} />
           </Grid>
           <Grid item xs={4}>
             <VideoList />
