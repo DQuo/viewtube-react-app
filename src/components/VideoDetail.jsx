@@ -13,9 +13,8 @@ const VideoDetail = ({ video }) => {
         </div>
       ) : (
         <>
-          <Paper elevation={6} style={{ height: '70%' }}>
+          <Paper elevation={6} style={{ height: '700px' }}>
             <iframe 
-              frameBorder='0' 
               height='100%' 
               width='100%' 
               title='Video Player' 
